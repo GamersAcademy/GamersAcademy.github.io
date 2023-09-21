@@ -55,7 +55,7 @@
         }
 
         #result {
-            display: none;
+            display: flex;
             flex-direction: column;
             align-items: center;
         }
@@ -76,9 +76,9 @@
 
         <!-- Display Separated Account -->
         <div class="account" id="result">
-            <div class="account-email" id="email"></div>
+            <div class="account-email" id="email">Email</div>
             <button class="button" id="copyEmail" onclick="copyToClipboard('email')">Copy Email</button>
-            <div class="account-password" id="password"></div>
+            <div class="account-password" id="password">Password</div>
             <button class="button" id="copyPassword" onclick="copyToClipboard('password')">Copy Password</button>
         </div>
 
