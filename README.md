@@ -3,14 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Office 365 Accounts</title>
+    <title>Office 365 Account Separator</title>
     <style>
         body {
             background-color: #111216;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
         .account {
@@ -35,36 +40,63 @@
             display: flex;
             justify-content: space-between;
         }
+
+        #inputField {
+            width: 300px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Office 365 Accounts</h1>
+    <h1>Office 365 Account Separator</h1>
 
-    <!-- Account 1 -->
-    <div class="account">
+    <!-- Input Field for Custom Account -->
+    <input type="text" id="inputField" placeholder="Enter an account (email and password separated by '|')">
+    <button class="button" onclick="separateAccount()">Separate</button>
+
+    <!-- Display Separated Account -->
+    <div class="account" id="result" style="display: none;">
         <div class="account-info">
-            <div class="account-email">A5565@office365-25.de</div>
-            <button class="button" onclick="copyToClipboard('A5565@office365-25.de')">Copy</button>
+            <div class="account-email" id="email"></div>
+            <button class="button" id="copyEmail" onclick="copyToClipboard('email')">Copy Email</button>
         </div>
-        <div class="account-password">t3JD8heP</div>
-        <button class="button" onclick="copyToClipboard('t3JD8heP')">Copy</button>
+        <div class="account-password" id="password"></div>
+        <button class="button" id="copyPassword" onclick="copyToClipboard('password')">Copy Password</button>
     </div>
-
-    <!-- Add more accounts here if needed -->
 
     <!-- Open Office 365 Button -->
     <a href="https://www.office.com" target="_blank" class="button">Open Office 365</a>
 
     <script>
-        function copyToClipboard(text) {
+        function separateAccount() {
+            const inputField = document.getElementById('inputField').value.trim();
+            const accountParts = inputField.split('|');
+
+            if (accountParts.length === 2) {
+                const email = accountParts[0].trim();
+                const password = accountParts[1].trim();
+
+                document.getElementById('email').textContent = email;
+                document.getElementById('password').textContent = password;
+
+                // Show the result section
+                document.getElementById('result').style.display = 'block';
+            } else {
+                alert('Please enter an account in the format "email | password".');
+            }
+        }
+
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).textContent;
             const tempInput = document.createElement('input');
-            tempInput.value = text;
+            tempInput.value = textToCopy;
             document.body.appendChild(tempInput);
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
-            alert('Copied to clipboard: ' + text);
+            alert('Copied to clipboard: ' + textToCopy);
         }
     </script>
 </body>
