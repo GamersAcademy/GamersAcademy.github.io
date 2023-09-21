@@ -18,6 +18,12 @@
             margin: 0;
         }
 
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .account {
             margin: 10px;
         }
@@ -39,6 +45,7 @@
         .account-info {
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
         #inputField {
@@ -51,23 +58,24 @@
 
 <body>
     <h1>Office 365 Account Separator</h1>
+    <div class="container">
+        <!-- Input Field for Custom Account -->
+        <input type="text" id="inputField" placeholder="Enter an account (email | password)">
+        <button class="button" onclick="separateAccount()">Separate</button>
 
-    <!-- Input Field for Custom Account -->
-    <input type="text" id="inputField" placeholder="Enter an account (email and password separated by '|')">
-    <button class="button" onclick="separateAccount()">Separate</button>
-
-    <!-- Display Separated Account -->
-    <div class="account" id="result" style="display: none;">
-        <div class="account-info">
-            <div class="account-email" id="email"></div>
-            <button class="button" id="copyEmail" onclick="copyToClipboard('email')">Copy Email</button>
+        <!-- Display Separated Account -->
+        <div class="account" id="result" style="display: none;">
+            <div class="account-info">
+                <div class="account-email" id="email"></div>
+                <button class="button" id="copyEmail" onclick="copyToClipboard('email')">Copy Email</button>
+            </div>
+            <div class="account-password" id="password"></div>
+            <button class="button" id="copyPassword" onclick="copyToClipboard('password')">Copy Password</button>
         </div>
-        <div class="account-password" id="password"></div>
-        <button class="button" id="copyPassword" onclick="copyToClipboard('password')">Copy Password</button>
-    </div>
 
-    <!-- Open Office 365 Button -->
-    <a href="https://www.office.com" target="_blank" class="button">Open Office 365</a>
+        <!-- Open Office 365 Button -->
+        <a href="https://www.office.com/?auth=2" target="_blank" class="button">Open Office 365</a>
+    </div>
 
     <script>
         function separateAccount() {
