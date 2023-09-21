@@ -53,6 +53,17 @@
             padding: 5px;
             margin-bottom: 10px;
         }
+
+        #result {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .account-email,
+        .account-password {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -64,11 +75,9 @@
         <button class="button" onclick="separateAccount()">Separate</button>
 
         <!-- Display Separated Account -->
-        <div class="account" id="result" style="display: none;">
-            <div class="account-info">
-                <div class="account-email" id="email"></div>
-                <button class="button" id="copyEmail" onclick="copyToClipboard('email')">Copy Email</button>
-            </div>
+        <div class="account" id="result">
+            <div class="account-email" id="email"></div>
+            <button class="button" id="copyEmail" onclick="copyToClipboard('email')">Copy Email</button>
             <div class="account-password" id="password"></div>
             <button class="button" id="copyPassword" onclick="copyToClipboard('password')">Copy Password</button>
         </div>
@@ -90,7 +99,7 @@
                 document.getElementById('password').textContent = password;
 
                 // Show the result section
-                document.getElementById('result').style.display = 'block';
+                document.getElementById('result').style.display = 'flex';
             } else {
                 alert('Please enter an account in the format "email | password".');
             }
